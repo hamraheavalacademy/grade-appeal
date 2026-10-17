@@ -172,7 +172,7 @@
     $("#" + role + "-logout").addEventListener("click", () => logout(role, "از پنل خارج شدی."));
   }
 
-  /* ---------- دانش‌آموز ---------- */
+  /* ---------- فراگیر ---------- */
   function statusBadge(status) {
     const answered = status === "answered";
     return make("span", "status-badge " + (answered ? "status-answered" : "status-open"), answered ? "پاسخ داده‌شده" : "در انتظار بررسی");
@@ -200,7 +200,7 @@
       card.appendChild(reason);
 
       const response = make("div", "response-block " + (ticket.response ? "has-response" : ""));
-      response.append(make("span", "response-label", ticket.response ? "پاسخ مصحح" + (ticket.correctorName ? " (" + ticket.correctorName + ")" : "") : "هنوز پاسخی ثبت نشده"));
+      response.append(make("span", "response-label", ticket.response ? "پاسخ مصحح" : "هنوز پاسخی ثبت نشده"));
       response.append(make("p", "detail-text", ticket.response || "بعد از ثبت پاسخ توسط مصحح، متن آن در همین بخش نمایش داده می‌شود."));
       if (ticket.respondedAt) response.append(make("small", "response-date", "زمان پاسخ: " + prettyDate(ticket.respondedAt)));
       card.appendChild(response);
@@ -251,7 +251,7 @@
       card.appendChild(meta);
 
       const reason = make("div", "detail-block");
-      reason.append(make("span", "meta-label", "علت اعتراض دانش‌آموز"), make("p", "detail-text", ticket.reason));
+      reason.append(make("span", "meta-label", "علت اعتراض فراگیر"), make("p", "detail-text", ticket.reason));
       card.appendChild(reason);
 
       const responseLabel = make("label", "field corrector-response-field");
@@ -259,7 +259,7 @@
       const responseInput = document.createElement("textarea");
       responseInput.rows = 3;
       responseInput.maxLength = 2000;
-      responseInput.placeholder = "نتیجهٔ بررسی را برای دانش‌آموز بنویس…";
+      responseInput.placeholder = "نتیجهٔ بررسی را برای فراگیر بنویس…";
       responseInput.value = ticket.response || "";
       responseLabel.appendChild(responseInput);
       card.appendChild(responseLabel);
@@ -312,7 +312,7 @@
     }
   }
 
-  /* ---------- مدیر ---------- */
+  /* ---------- ادمین ---------- */
   let admin = { courses: [], correctors: [], students: [] };
   let editingCorrector = null;
 
@@ -380,7 +380,7 @@
   function renderStudents() {
     const q = toLatinDigits($("#students-search").value).trim().toLowerCase();
     const filtered = admin.students.filter((s) => !q || s.name.toLowerCase().includes(q) || s.nationalId.includes(q));
-    $("#students-count").textContent = "دانش‌آموزان · " + admin.students.length;
+    $("#students-count").textContent = "فراگیران · " + admin.students.length;
     const list = $("#students-list");
     list.replaceChildren();
     if (!filtered.length) list.appendChild(make("div", "empty-state", "موردی نیست."));
@@ -477,7 +477,7 @@
         box.hidden = false;
         if (result.saved.length) {
           const lines = result.saved.map((s) => s.name + " | " + s.nationalId + " | " + s.password);
-          box.append(make("strong", "", result.saved.length + " دانش‌آموز ثبت یا به‌روزرسانی شد. رمزها را همین حالا برای توزیع کپی کن؛ بعداً قابل نمایش نیستند."));
+          box.append(make("strong", "", result.saved.length + " فراگیر ثبت یا به‌روزرسانی شد. رمزها را همین حالا برای توزیع کپی کن؛ بعداً قابل نمایش نیستند."));
           box.append(make("pre", "", lines.join("\n")));
           const copy = make("button", "button button-light", "کپی فهرست");
           copy.type = "button";

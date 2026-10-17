@@ -3,230 +3,181 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#183e38">
-  <meta name="description" content="ثبت و پیگیری درخواست بازبینی نمره">
-  <title>بازبینی نمره</title>
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="سامانه بررسی نمرات بوت‌کمپ مهندس داده ۲">
+  <title>سامانه بررسی نمرات بوت‌کمپ مهندس داده ۲</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/misc/Farsi-Digits/Vazirmatn-FD-font-face.css">
   <link rel="stylesheet" href="styles.css">
   <script src="config.js"></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="بازبینی نمره، صفحهٔ اصلی">
-        <span class="brand-mark" aria-hidden="true">ب</span>
-        <span class="brand-copy">
-          <strong id="app-title">بازبینی نمره</strong>
-          <small>درخواست، بررسی، پاسخ</small>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="صفحهٔ اصلی">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="11" width="4" height="7" rx="1.5" fill="#fff"/><rect x="8" y="6" width="4" height="12" rx="1.5" fill="#fff"/><rect x="14" y="2" width="4" height="16" rx="1.5" fill="#fff"/></svg>
         </span>
+        <span><strong>بررسی نمرات</strong><small>بوت‌کمپ مهندس داده ۲</small></span>
       </a>
-      <div class="header-meta">
-        <span class="header-context">ورود با حساب اختصاصی</span>
-        <span class="secure-note"><span class="secure-dot"></span> دسترسی بر اساس نقش</span>
+      <span class="topbar-note">ثبت و پیگیری درخواست بازبینی نمره</span>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="wrap">
+      <span class="hero-chip">بوت‌کمپ مهندس داده ۲</span>
+      <h1 id="app-title">سامانه بررسی نمرات بوت‌کمپ مهندس داده ۲</h1>
+      <p>اگر به نمره‌ات اعتراض داری، با حساب خودت وارد شو، درس را انتخاب کن و دلیلت را بنویس. درخواست مستقیم به مصحح همان درس می‌رسد و پاسخ را همین‌جا می‌بینی.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <nav class="tabs" aria-label="بخش‌های سامانه">
+      <button class="tab-button is-active" data-view="student" type="button">فراگیر</button>
+      <button class="tab-button" data-view="corrector" type="button">مصحح</button>
+      <button class="tab-button" data-view="admin" type="button">ادمین</button>
+    </nav>
+
+    <div id="api-notice" class="notice" role="status" hidden></div>
+
+    <!-- فراگیر -->
+    <section class="view is-visible" id="view-student" aria-labelledby="student-title">
+      <div id="student-login-wrap" class="panel auth-card">
+        <h3 id="student-title">ورود فراگیر</h3>
+        <p>نام کاربری تو کد ملی‌ات است و رمز را ادمین به تو داده.</p>
+        <form id="student-login-form">
+          <label class="field"><span>کد ملی</span><input id="student-nid" name="nationalId" type="text" inputmode="numeric" dir="ltr" maxlength="10" autocomplete="username" required></label>
+          <label class="field"><span>رمز</span><input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="button button-primary button-block" type="submit">ورود</button>
+        </form>
+        <div id="student-login-message" class="form-message" role="status" aria-live="polite"></div>
       </div>
-    </header>
 
-    <main id="home">
-      <section class="hero">
-        <div class="hero-main">
-          <p class="eyebrow"><span class="eyebrow-rule"></span> مسیر بازبینی نمره</p>
-          <h1>درخواست بازبینی،<br><span>با مسیر روشن تا پاسخ.</span></h1>
-          <p class="hero-description">با حساب خودت وارد شو، درس را انتخاب کن و علت اعتراضت را بنویس. درخواست مستقیم برای مصحح همان درس ثبت می‌شود و پاسخ را در همین‌جا می‌بینی.</p>
-        </div>
-        <aside class="hero-process" aria-label="مراحل رسیدگی">
-          <div class="process-overline"><span>روال رسیدگی</span><span>۰۱ — ۰۳</span></div>
-          <ol class="hero-steps">
-            <li><span class="step-number">۰۱</span><span><strong>ثبت درخواست</strong><small>درس و توضیحت را بفرست</small></span></li>
-            <li><span class="step-number">۰۲</span><span><strong>بررسی مصحح</strong><small>مصحح درس درخواست را می‌بیند</small></span></li>
-            <li><span class="step-number">۰۳</span><span><strong>دریافت پاسخ</strong><small>با ورود به حسابت ببین</small></span></li>
-          </ol>
-        </aside>
-      </section>
-
-      <nav class="workspace-nav" aria-label="بخش‌های سامانه">
-        <span class="nav-caption">ورود</span>
-        <div class="tabs">
-          <button class="tab-button is-active" data-view="student" type="button"><span class="tab-number">۰۱</span> دانش‌آموز</button>
-          <button class="tab-button" data-view="corrector" type="button"><span class="tab-number">۰۲</span> مصحح</button>
-          <button class="tab-button" data-view="admin" type="button"><span class="tab-number">۰۳</span> مدیر</button>
-        </div>
-      </nav>
-
-      <div id="api-notice" class="notice notice-info" role="status" hidden></div>
-
-      <!-- ===== دانش‌آموز ===== -->
-      <section class="view is-visible" id="view-student" aria-labelledby="student-title">
-        <div class="section-heading">
-          <div class="heading-title">
-            <span class="heading-index">01</span>
-            <div><p class="eyebrow">شروع درخواست</p><h2 id="student-title">پنل دانش‌آموز</h2></div>
+      <div id="student-dashboard" hidden>
+        <div class="toolbar">
+          <div><strong id="student-name">فراگیر</strong><p>درخواست جدید ثبت کن یا پاسخ درخواست‌های قبلی را ببین.</p></div>
+          <div class="toolbar-actions">
+            <button id="student-refresh" class="button button-secondary" type="button">به‌روزرسانی</button>
+            <button id="student-logout" class="button button-quiet" type="button">خروج</button>
           </div>
-          <p class="heading-note">نام کاربری تو کد ملی‌ات است؛ رمز را مدیر به تو می‌دهد.</p>
         </div>
-
-        <div id="student-login-wrap" class="panel corrector-login-panel">
-          <div class="login-mark" aria-hidden="true">01</div>
-          <div class="login-copy"><span class="form-overline">ورود</span><h3>ورود دانش‌آموز</h3><p>کد ملی و رمزی که به تو داده شده را وارد کن.</p></div>
-          <form id="student-login-form" class="login-form">
-            <label class="field"><span>کد ملی</span><input id="student-nid" name="nationalId" type="text" inputmode="numeric" dir="ltr" maxlength="10" autocomplete="username" required></label>
-            <label class="field"><span>رمز</span><input name="password" type="password" autocomplete="current-password" required></label>
-            <button class="button button-primary" type="submit">ورود <span class="button-arrow" aria-hidden="true">←</span></button>
+        <div class="split">
+          <form id="submit-form" class="panel form-panel">
+            <h3>ثبت اعتراض جدید</h3>
+            <label class="field">
+              <span>درس مورد اعتراض <b>*</b></span>
+              <select name="course" id="course-select" required><option value="" disabled selected>درس را انتخاب کن</option></select>
+            </label>
+            <label class="field">
+              <span>دلیل اعتراض <b>*</b></span>
+              <textarea name="reason" rows="6" maxlength="2000" placeholder="شمارهٔ سؤال یا بخشی را که می‌خواهی دوباره بررسی شود و دلیل اختلافت با نمره را بنویس…" required></textarea>
+              <small class="field-hint">حداکثر ۲۰۰۰ نویسه</small>
+            </label>
+            <button class="button button-primary button-block" type="submit">ارسال برای بررسی</button>
+            <p class="submit-note">فقط مصحح همین درس درخواستت را می‌بیند.</p>
+            <div id="submit-message" class="form-message" role="status" aria-live="polite"></div>
           </form>
-          <div id="student-login-message" class="form-message" role="status" aria-live="polite"></div>
+          <div>
+            <h3 class="sub-title">درخواست‌های من</h3>
+            <div id="student-ticket-list" class="ticket-list"></div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div id="student-dashboard" hidden>
-          <div class="dashboard-toolbar">
-            <div><strong id="student-name">دانش‌آموز</strong><p>درخواست جدید ثبت کن یا پاسخ درخواست‌های قبلی را ببین.</p></div>
-            <div class="toolbar-actions">
-              <button id="student-refresh" class="button button-secondary" type="button">به‌روزرسانی</button>
-              <button id="student-logout" class="button button-quiet" type="button">خروج</button>
+    <!-- مصحح -->
+    <section class="view" id="view-corrector" aria-labelledby="corrector-title" hidden>
+      <div id="corrector-login-wrap" class="panel auth-card">
+        <h3 id="corrector-title">ورود مصحح</h3>
+        <p>نام کاربری و رمزی که ادمین به تو داده را وارد کن.</p>
+        <form id="corrector-login-form">
+          <label class="field"><span>نام کاربری</span><input name="username" type="text" autocomplete="username" dir="ltr" required></label>
+          <label class="field"><span>رمز ورود</span><input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="button button-primary button-block" type="submit">ورود</button>
+        </form>
+        <div id="corrector-login-message" class="form-message" role="status" aria-live="polite"></div>
+      </div>
+
+      <div id="corrector-dashboard" hidden>
+        <div class="toolbar">
+          <div><strong id="ticket-count">درخواست‌ها</strong><p>تازه‌ترین درخواست‌ها بالاتر هستند.</p></div>
+          <div class="toolbar-actions">
+            <label class="filter-label" for="ticket-filter">وضعیت</label>
+            <select id="ticket-filter"><option value="all">همه</option><option value="open">در انتظار بررسی</option><option value="answered">پاسخ داده‌شده</option></select>
+            <button id="refresh-tickets" class="button button-secondary" type="button">به‌روزرسانی</button>
+            <button id="corrector-logout" class="button button-quiet" type="button">خروج</button>
+          </div>
+        </div>
+        <div id="corrector-message" class="form-message" role="status" aria-live="polite"></div>
+        <div id="ticket-list" class="ticket-list"></div>
+      </div>
+    </section>
+
+    <!-- ادمین -->
+    <section class="view" id="view-admin" aria-labelledby="admin-title" hidden>
+      <div id="admin-login-wrap" class="panel auth-card">
+        <h3 id="admin-title">ورود ادمین</h3>
+        <p>رمزی که در ADMIN_PASSWORD گذاشتی را وارد کن.</p>
+        <form id="admin-login-form">
+          <label class="field"><span>رمز ادمین</span><input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="button button-primary button-block" type="submit">ورود</button>
+        </form>
+        <div id="admin-login-message" class="form-message" role="status" aria-live="polite"></div>
+      </div>
+
+      <div id="admin-dashboard" hidden>
+        <div class="toolbar">
+          <div><strong>پنل ادمین</strong><p>درس‌ها، مصحح‌ها و فراگیران را از اینجا تعریف کن.</p></div>
+          <div class="toolbar-actions"><button id="admin-logout" class="button button-quiet" type="button">خروج</button></div>
+        </div>
+        <div id="admin-message" class="form-message" role="status" aria-live="polite"></div>
+
+        <section class="panel admin-card">
+          <h3>۱) درس‌ها</h3>
+          <p class="admin-hint">هر درس در یک خط. همین فهرست در فرم فراگیر و در انتخاب درس مصحح‌ها نمایش داده می‌شود.</p>
+          <label class="field"><textarea id="courses-text" rows="6" placeholder="درس اول&#10;درس دوم"></textarea></label>
+          <div class="admin-actions"><button id="save-courses" class="button button-primary" type="button">ذخیرهٔ درس‌ها</button></div>
+        </section>
+
+        <section class="panel admin-card">
+          <h3>۲) مصحح‌ها</h3>
+          <p class="admin-hint">برای ویرایش روی «ویرایش» بزن؛ رمز را خالی بگذاری تغییر نمی‌کند.</p>
+          <form id="corrector-form">
+            <div class="field-row">
+              <label class="field"><span>نام کاربری (انگلیسی)</span><input name="username" type="text" dir="ltr" maxlength="30" placeholder="مثلاً math1" required></label>
+              <label class="field"><span>نام نمایشی</span><input name="name" type="text" maxlength="100" required></label>
             </div>
-          </div>
-          <div class="content-grid">
-            <form id="submit-form" class="panel form-panel">
-              <div class="form-intro"><div><span class="form-overline">فرم بازبینی</span><h3>ثبت اعتراض جدید</h3></div></div>
-              <label class="field">
-                <span>درس مورد اعتراض <b>*</b></span>
-                <select name="course" id="course-select" required><option value="" disabled selected>درس را انتخاب کن</option></select>
-              </label>
-              <label class="field">
-                <span>دلیل درخواست بازبینی <b>*</b></span>
-                <textarea name="reason" rows="5" maxlength="2000" placeholder="شمارهٔ سؤال یا بخشی را که می‌خواهی دوباره بررسی شود بنویس…" required></textarea>
-                <small class="field-hint">تا ۲۰۰۰ نویسه</small>
-              </label>
-              <div class="form-submit-row">
-                <span class="submit-assurance"><span class="assurance-mark">✓</span> فقط مصحح همین درس آن را می‌بیند.</span>
-                <button class="button button-primary" type="submit"><span>ارسال برای بررسی</span><span class="button-arrow" aria-hidden="true">←</span></button>
-              </div>
-              <div id="submit-message" class="form-message" role="status" aria-live="polite"></div>
-            </form>
-            <aside class="side-column">
-              <section class="panel aside-card writing-card">
-                <span class="aside-kicker">برای بررسی دقیق‌تر</span>
-                <h3>دلیل اعتراض را مشخص بنویس.</h3>
-                <ul>
-                  <li>شمارهٔ سؤال یا بخش موردنظر</li>
-                  <li>دلیل اختلاف با نمرهٔ اعلام‌شده</li>
-                  <li>هر توضیحی که به بازبینی کمک می‌کند</li>
-                </ul>
-              </section>
-            </aside>
-          </div>
-          <h3 class="subheading">درخواست‌های من</h3>
-          <div id="student-ticket-list" class="ticket-list"></div>
-        </div>
-      </section>
-
-      <!-- ===== مصحح ===== -->
-      <section class="view" id="view-corrector" aria-labelledby="corrector-title" hidden>
-        <div class="section-heading">
-          <div class="heading-title">
-            <span class="heading-index">02</span>
-            <div><p class="eyebrow">دسترسی آموزشی</p><h2 id="corrector-title">پنل مصحح</h2></div>
-          </div>
-          <p class="heading-note">هر مصحح درخواست‌های درس‌های تخصیص‌یافته به خودش را می‌بیند.</p>
-        </div>
-
-        <div id="corrector-login-wrap" class="panel corrector-login-panel">
-          <div class="login-mark" aria-hidden="true">02</div>
-          <div class="login-copy"><span class="form-overline">ورود محدود</span><h3>ورود مصحح</h3><p>نام کاربری و رمزی که مدیر داده را وارد کن.</p></div>
-          <form id="corrector-login-form" class="login-form">
-            <label class="field"><span>نام کاربری</span><input name="username" type="text" autocomplete="username" dir="ltr" required></label>
-            <label class="field"><span>رمز ورود</span><input name="password" type="password" autocomplete="current-password" required></label>
-            <button class="button button-primary" type="submit">ورود <span class="button-arrow" aria-hidden="true">←</span></button>
+            <div class="field-row">
+              <label class="field"><span>ایمیل (برای اطلاع‌رسانی فوری)</span><input name="email" type="email" dir="ltr" maxlength="150" placeholder="teacher@gmail.com"></label>
+              <label class="field"><span>رمز (حداقل ۸ نویسه)</span><input name="password" type="text" dir="ltr" autocomplete="off"></label>
+            </div>
+            <div class="field"><span>درس‌های این مصحح</span><div id="corrector-courses" class="check-grid"></div></div>
+            <div class="admin-actions">
+              <button class="button button-primary" type="submit">ذخیرهٔ مصحح</button>
+              <button id="corrector-cancel" class="button button-quiet" type="button" hidden>لغو ویرایش</button>
+            </div>
           </form>
-          <div id="corrector-login-message" class="form-message" role="status" aria-live="polite"></div>
-        </div>
+          <div id="corrector-list" class="item-list"></div>
+        </section>
 
-        <div id="corrector-dashboard" hidden>
-          <div class="dashboard-toolbar">
-            <div><strong id="ticket-count">درخواست‌ها</strong><p>فهرست بر اساس تازه‌ترین درخواست مرتب شده.</p></div>
-            <div class="toolbar-actions">
-              <label class="filter-label" for="ticket-filter">وضعیت</label>
-              <select id="ticket-filter"><option value="all">همه</option><option value="open">در انتظار بررسی</option><option value="answered">پاسخ داده‌شده</option></select>
-              <button id="refresh-tickets" class="button button-secondary" type="button">به‌روزرسانی</button>
-              <button id="corrector-logout" class="button button-quiet" type="button">خروج</button>
-            </div>
+        <section class="panel admin-card">
+          <h3>۳) فراگیران</h3>
+          <p class="admin-hint">هر خط یک فراگیر: <code>نام ، کد ملی ، رمز</code>. رمز اختیاری است و اگر ننویسی خودکار ساخته می‌شود. ثبت دوبارهٔ یک کد ملی، رمز او را عوض می‌کند.</p>
+          <label class="field"><textarea id="students-text" rows="6" dir="auto" placeholder="علی رضایی ، 0012345678 ، 123456&#10;سارا احمدی ، 0098765432"></textarea></label>
+          <div class="admin-actions"><button id="add-students" class="button button-primary" type="button">ثبت فراگیران</button></div>
+          <div id="students-result" class="result-box" hidden></div>
+          <div class="list-head">
+            <strong id="students-count">فراگیران</strong>
+            <input id="students-search" type="search" placeholder="جستجوی نام یا کد ملی">
           </div>
-          <div id="corrector-message" class="form-message" role="status" aria-live="polite"></div>
-          <div id="ticket-list" class="ticket-list"></div>
-        </div>
-      </section>
+          <div id="students-list" class="item-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
 
-      <!-- ===== مدیر ===== -->
-      <section class="view" id="view-admin" aria-labelledby="admin-title" hidden>
-        <div class="section-heading">
-          <div class="heading-title">
-            <span class="heading-index">03</span>
-            <div><p class="eyebrow">مدیریت سامانه</p><h2 id="admin-title">پنل مدیر</h2></div>
-          </div>
-          <p class="heading-note">درس‌ها، مصحح‌ها و دانش‌آموزان را از اینجا تعریف کن.</p>
-        </div>
-
-        <div id="admin-login-wrap" class="panel corrector-login-panel">
-          <div class="login-mark" aria-hidden="true">03</div>
-          <div class="login-copy"><span class="form-overline">فقط مدیر</span><h3>ورود مدیر</h3><p>رمزی که در ADMIN_PASSWORD گذاشتی.</p></div>
-          <form id="admin-login-form" class="login-form">
-            <label class="field"><span>رمز مدیر</span><input name="password" type="password" autocomplete="current-password" required></label>
-            <button class="button button-primary" type="submit">ورود <span class="button-arrow" aria-hidden="true">←</span></button>
-          </form>
-          <div id="admin-login-message" class="form-message" role="status" aria-live="polite"></div>
-        </div>
-
-        <div id="admin-dashboard" hidden>
-          <div class="dashboard-toolbar">
-            <div><strong>تنظیمات سامانه</strong><p>۱) درس‌ها ← ۲) مصحح‌ها ← ۳) دانش‌آموزان</p></div>
-            <div class="toolbar-actions"><button id="admin-logout" class="button button-quiet" type="button">خروج</button></div>
-          </div>
-          <div id="admin-message" class="form-message" role="status" aria-live="polite"></div>
-
-          <section class="panel admin-card">
-            <h3>۱) درس‌هایی که دانش‌آموز می‌تواند برایشان اعتراض ثبت کند</h3>
-            <p class="admin-hint">هر درس در یک خط. بعد از ذخیره، همین درس‌ها در فرم دانش‌آموز و در انتخاب مصحح‌ها دیده می‌شوند.</p>
-            <label class="field"><textarea id="courses-text" rows="6" placeholder="ریاضی&#10;فیزیک&#10;شیمی"></textarea></label>
-            <div class="admin-actions"><button id="save-courses" class="button button-primary" type="button">ذخیرهٔ درس‌ها</button></div>
-          </section>
-
-          <section class="panel admin-card">
-            <h3>۲) مصحح‌ها</h3>
-            <p class="admin-hint">برای هر مصحح نام کاربری، رمز و درس‌هایی که باید ببیند را مشخص کن. برای ویرایش، روی «ویرایش» بزن؛ رمز را خالی بگذاری، تغییر نمی‌کند.</p>
-            <form id="corrector-form">
-              <div class="field-row">
-                <label class="field"><span>نام کاربری (انگلیسی)</span><input name="username" type="text" dir="ltr" maxlength="30" placeholder="مثلاً math1" required></label>
-                <label class="field"><span>نام نمایشی</span><input name="name" type="text" maxlength="100" placeholder="مثلاً مصحح ریاضی" required></label>
-              </div>
-              <label class="field"><span>ایمیل مصحح (برای اطلاع‌رسانی فوری)</span><input name="email" type="email" dir="ltr" maxlength="150" placeholder="teacher@gmail.com"></label>
-              <label class="field"><span>رمز (حداقل ۸ نویسه)</span><input name="password" type="text" dir="ltr" autocomplete="off" placeholder="رمز مصحح"></label>
-              <div class="field"><span>درس‌های این مصحح</span><div id="corrector-courses" class="check-grid"></div></div>
-              <div class="admin-actions">
-                <button class="button button-primary" type="submit">ذخیرهٔ مصحح</button>
-                <button id="corrector-cancel" class="button button-quiet" type="button" hidden>لغو ویرایش</button>
-              </div>
-            </form>
-            <div id="corrector-list" class="item-list"></div>
-          </section>
-
-          <section class="panel admin-card">
-            <h3>۳) دانش‌آموزان</h3>
-            <p class="admin-hint">هر خط یک دانش‌آموز: <code dir="ltr">نام ، کد ملی ، رمز</code>. رمز اختیاری است؛ اگر ننویسی خودکار ساخته می‌شود. ثبت دوباره‌ی یک کد ملی، رمز او را عوض می‌کند.</p>
-            <label class="field"><textarea id="students-text" rows="6" dir="auto" placeholder="علی رضایی ، 0012345678 ، 123456&#10;سارا احمدی ، 0098765432"></textarea></label>
-            <div class="admin-actions"><button id="add-students" class="button button-primary" type="button">ثبت دانش‌آموزان</button></div>
-            <div id="students-result" class="result-box" hidden></div>
-            <div class="list-head">
-              <strong id="students-count">دانش‌آموزان</strong>
-              <input id="students-search" type="search" placeholder="جستجوی نام یا کد ملی">
-            </div>
-            <div id="students-list" class="item-list"></div>
-          </section>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <span>بازبینی نمره</span>
-      <span>درخواست روشن، پاسخ قابل پیگیری</span>
-    </footer>
-  </div>
+  <footer class="footer"><div class="wrap">سامانه بررسی نمرات بوت‌کمپ مهندس داده ۲</div></footer>
 </body>
 </html>
