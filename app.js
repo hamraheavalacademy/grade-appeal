@@ -369,7 +369,7 @@
     if (!admin.correctors.length) list.appendChild(make("div", "empty-state", "هنوز مصححی تعریف نشده است."));
     admin.correctors.forEach((c) => {
       const courses = c.courses.includes("*") ? "همهٔ درس‌ها" : c.courses.join("، ");
-      list.appendChild(itemRow(c.name + " · " + c.username, "درس‌ها: " + courses, [
+      list.appendChild(itemRow(c.name + " · " + c.username, "درس‌ها: " + courses + (c.email ? " · ایمیل: " + c.email : " · بدون ایمیل"), [
         actionButton("ویرایش", () => startEditCorrector(c)),
         actionButton("حذف", () => removeItem("adminDeleteCorrector", { username: c.username }, "مصحح «" + c.name + "» حذف شود؟"), "button-quiet")
       ]));
@@ -407,6 +407,7 @@
     form.username.value = c.username;
     form.username.readOnly = true;
     form.name.value = c.name;
+    form.email.value = c.email || "";
     form.password.value = "";
     form.password.placeholder = "خالی = بدون تغییر رمز";
     $("#corrector-cancel").hidden = false;
@@ -453,7 +454,7 @@
       adminMessage("در حال ذخیره…");
       try {
         await call("adminSaveCorrector", {
-          username: form.username.value.trim(), name: form.name.value.trim(),
+          username: form.username.value.trim(), name: form.name.value.trim(), email: form.email.value.trim(),
           password: form.password.value, courses: JSON.stringify(courses)
         }, "admin");
         adminMessage("مصحح ذخیره شد.", "success");
