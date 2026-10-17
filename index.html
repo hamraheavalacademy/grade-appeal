@@ -13,23 +13,11 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <a class="brand" href="#top" aria-label="صفحهٔ اصلی">
-        <span class="brand-mark" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="11" width="4" height="7" rx="1.5" fill="#fff"/><rect x="8" y="6" width="4" height="12" rx="1.5" fill="#fff"/><rect x="14" y="2" width="4" height="16" rx="1.5" fill="#fff"/></svg>
-        </span>
-        <span><strong>بررسی نمرات</strong><small>بوت‌کمپ مهندس داده ۲</small></span>
-      </a>
-      <span class="topbar-note">ثبت و پیگیری درخواست بازبینی نمره</span>
-    </div>
-  </header>
 
   <section class="hero" id="top">
     <div class="wrap">
-      <span class="hero-chip">بوت‌کمپ مهندس داده ۲</span>
       <h1 id="app-title">سامانه بررسی نمرات بوت‌کمپ مهندس داده ۲</h1>
-      <p>اگر به نمره‌ات اعتراض داری، با حساب خودت وارد شو، درس را انتخاب کن و دلیلت را بنویس. درخواست مستقیم به مصحح همان درس می‌رسد و پاسخ را همین‌جا می‌بینی.</p>
+<p>برای ثبت درخواست بازبینی نمره، وارد حساب کاربری خود شوید، درس موردنظر را انتخاب و توضیح درخواست را ثبت کنید. درخواست مستقیماً به مصحح ارجاع داده می‌شود و پاسخ از همین بخش قابل مشاهده است.</p>
     </div>
   </section>
 
@@ -46,7 +34,7 @@
     <section class="view is-visible" id="view-student" aria-labelledby="student-title">
       <div id="student-login-wrap" class="panel auth-card">
         <h3 id="student-title">ورود فراگیر</h3>
-        <p>نام کاربری تو کد ملی‌ات است و رمز را ادمین به تو داده.</p>
+        <p>نام کاربری و رمز عبور شما، کد ملی‌تان است.</p>
         <form id="student-login-form">
           <label class="field"><span>کد ملی</span><input id="student-nid" name="nationalId" type="text" inputmode="numeric" dir="ltr" maxlength="10" autocomplete="username" required></label>
           <label class="field"><span>رمز</span><input name="password" type="password" autocomplete="current-password" required></label>
@@ -65,18 +53,18 @@
         </div>
         <div class="split">
           <form id="submit-form" class="panel form-panel">
-            <h3>ثبت اعتراض جدید</h3>
+          <h3>ثبت درخواست بازبینی نمره</h3>
             <label class="field">
-              <span>درس مورد اعتراض <b>*</b></span>
+              <span>انتخاب درس  <b>*</b></span>
               <select name="course" id="course-select" required><option value="" disabled selected>درس را انتخاب کن</option></select>
             </label>
             <label class="field">
-              <span>دلیل اعتراض <b>*</b></span>
+              <span>توضیحات درخواست <b>*</b></span>
               <textarea name="reason" rows="6" maxlength="2000" placeholder="شمارهٔ سؤال یا بخشی را که می‌خواهی دوباره بررسی شود و دلیل اختلافت با نمره را بنویس…" required></textarea>
               <small class="field-hint">حداکثر ۲۰۰۰ نویسه</small>
             </label>
             <button class="button button-primary button-block" type="submit">ارسال برای بررسی</button>
-            <p class="submit-note">فقط مصحح همین درس درخواستت را می‌بیند.</p>
+            <p class="submit-note">درخواست شما به‌صورت مستقیم و محرمانه برای مصحح درس انتخاب‌شده ارسال می‌شود.</p>
             <div id="submit-message" class="form-message" role="status" aria-live="polite"></div>
           </form>
           <div>
@@ -91,7 +79,6 @@
     <section class="view" id="view-corrector" aria-labelledby="corrector-title" hidden>
       <div id="corrector-login-wrap" class="panel auth-card">
         <h3 id="corrector-title">ورود مصحح</h3>
-        <p>نام کاربری و رمزی که ادمین به تو داده را وارد کن.</p>
         <form id="corrector-login-form">
           <label class="field"><span>نام کاربری</span><input name="username" type="text" autocomplete="username" dir="ltr" required></label>
           <label class="field"><span>رمز ورود</span><input name="password" type="password" autocomplete="current-password" required></label>
@@ -119,7 +106,6 @@
     <section class="view" id="view-admin" aria-labelledby="admin-title" hidden>
       <div id="admin-login-wrap" class="panel auth-card">
         <h3 id="admin-title">ورود ادمین</h3>
-        <p>رمزی که در ADMIN_PASSWORD گذاشتی را وارد کن.</p>
         <form id="admin-login-form">
           <label class="field"><span>رمز ادمین</span><input name="password" type="password" autocomplete="current-password" required></label>
           <button class="button button-primary button-block" type="submit">ورود</button>
@@ -164,8 +150,8 @@
 
         <section class="panel admin-card">
           <h3>۳) فراگیران</h3>
-          <p class="admin-hint">هر خط یک فراگیر: <code>نام ، کد ملی ، رمز</code>. رمز اختیاری است و اگر ننویسی خودکار ساخته می‌شود. ثبت دوبارهٔ یک کد ملی، رمز او را عوض می‌کند.</p>
-          <label class="field"><textarea id="students-text" rows="6" dir="auto" placeholder="علی رضایی ، 0012345678 ، 123456&#10;سارا احمدی ، 0098765432"></textarea></label>
+          <p class="admin-hint">هر خط یک فراگیر: <code>نام ، کد ملی ، رمز ، ایمیل</code>. رمز و ایمیل اختیاری‌اند؛ رمز نباشد خودکار ساخته می‌شود. برای اضافه‌کردن ایمیل به فراگیر قبلی، همان خط را بدون رمز دوباره ثبت کن؛ رمزش عوض نمی‌شود.</p>
+          <label class="field"><textarea id="students-text" rows="6" dir="auto" placeholder="علی رضایی ، 0012345678 ، 123456 ، ali@gmail.com&#10;سارا احمدی ، 0098765432 ، sara@gmail.com"></textarea></label>
           <div class="admin-actions"><button id="add-students" class="button button-primary" type="button">ثبت فراگیران</button></div>
           <div id="students-result" class="result-box" hidden></div>
           <div class="list-head">
@@ -178,6 +164,5 @@
     </section>
   </main>
 
-  <footer class="footer"><div class="wrap">سامانه بررسی نمرات بوت‌کمپ مهندس داده ۲</div></footer>
 </body>
 </html>

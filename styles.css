@@ -25,13 +25,22 @@ h1, h2, h3, p { margin: 0; }
 .brand strong { display: block; font-size: 15px; font-weight: 800; line-height: 1.4; }
 .brand small { display: block; color: var(--muted); font-size: 11px; line-height: 1.4; }
 .topbar-note { color: var(--muted); font-size: 12px; }
-
 /* هیرو */
-.hero { padding: 48px 0 80px; color: #fff; background: radial-gradient(800px 320px at 88% -30%, #1d5cf0 0, transparent 65%), var(--ink); }
-.hero-chip { display: inline-block; margin-bottom: 14px; padding: 3px 14px; border: 1px solid rgba(255,255,255,.22); border-radius: 99px; color: #cfe0ff; font-size: 12px; }
-.hero h1 { max-width: 760px; font-size: clamp(23px, 4vw, 36px); font-weight: 800; line-height: 1.6; }
-.hero p { max-width: 580px; margin-top: 12px; color: #aebbd4; font-size: 14px; }
+.hero {
+  padding: 48px 0 80px;
+  color: #fff;
 
+  background:
+      linear-gradient(
+          rgba(5, 10, 25, 0.80),
+          rgba(5, 10, 25, 0.80)
+      ),
+      url('/images/back.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 /* تب‌ها */
 .tabs { position: relative; display: flex; gap: 6px; margin: -30px 0 26px; padding: 6px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
 .tab-button { flex: 1; min-height: 46px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-weight: 600; transition: background .15s, color .15s; }
@@ -56,7 +65,7 @@ h1, h2, h3, p { margin: 0; }
 /* فرم */
 .field { display: flex; flex-direction: column; gap: 6px; margin: 0 0 16px; color: var(--text); font-size: 13px; font-weight: 600; }
 .field b { color: var(--danger); }
-.field input, .field select, .field textarea { width: 100%; border: 1px solid #d3dbe8; border-radius: 10px; background: #fff; padding: 0 14px; font-weight: 400; outline: none; transition: border-color .15s, box-shadow .15s; }
+.field input, .field select, .field textarea {  text-align: left;  width: 100%; border: 1px solid #d3dbe8; border-radius: 10px; background: #fff; padding: 0 14px; font-weight: 400; outline: none; transition: border-color .15s, box-shadow .15s; }
 .field input, .field select { height: 48px; }
 .field textarea { min-height: 120px; padding: 12px 14px; resize: vertical; line-height: 1.9; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(10,92,255,.12); }

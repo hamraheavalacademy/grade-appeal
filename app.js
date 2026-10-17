@@ -169,7 +169,7 @@
         button.disabled = false;
       }
     });
-    $("#" + role + "-logout").addEventListener("click", () => logout(role, "از پنل خارج شدی."));
+    $("#" + role + "-logout").addEventListener("click", () => logout(role, "از پنل خارج شدید."));
   }
 
   /* ---------- فراگیر ---------- */
@@ -385,7 +385,7 @@
     list.replaceChildren();
     if (!filtered.length) list.appendChild(make("div", "empty-state", "موردی نیست."));
     filtered.slice(0, 200).forEach((s) => {
-      list.appendChild(itemRow(s.name, "کد ملی: " + s.nationalId, [
+      list.appendChild(itemRow(s.name, "کد ملی: " + s.nationalId + (s.email ? " · ایمیل: " + s.email : " · بدون ایمیل"), [
         actionButton("حذف", () => removeItem("adminDeleteStudent", { nationalId: s.nationalId }, "«" + s.name + "» حذف شود؟"), "button-quiet")
       ]));
     });
@@ -476,7 +476,7 @@
         box.replaceChildren();
         box.hidden = false;
         if (result.saved.length) {
-          const lines = result.saved.map((s) => s.name + " | " + s.nationalId + " | " + s.password);
+          const lines = result.saved.map((s) => s.name + " | " + s.nationalId + " | " + s.password + (s.email ? " | " + s.email : ""));
           box.append(make("strong", "", result.saved.length + " فراگیر ثبت یا به‌روزرسانی شد. رمزها را همین حالا برای توزیع کپی کن؛ بعداً قابل نمایش نیستند."));
           box.append(make("pre", "", lines.join("\n")));
           const copy = make("button", "button button-light", "کپی فهرست");
